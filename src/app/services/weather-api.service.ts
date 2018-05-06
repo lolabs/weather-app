@@ -15,24 +15,44 @@ export class WeatherApiService {
     console.log("weather api service started");
   }
 
+  /**
+   * Retrieves weather information by given city name
+   * @param {string} city
+   * @returns {Observable<any>}
+   */
   getByCityName(city: string): Observable<any> {
     return this.http.get(WEATHER_API_URL + '?q=' + city + '&lang=' + this.getBrowserLanguage() + '&units=metric&APPID=' + WEATHER_API_KEY).map((result) => {
       return result;
     });
   }
 
+  /**
+   * Retrieves weather information by given latitude and longitude
+   * @param lat
+   * @param lon
+   * @returns {Observable<any>}
+   */
   getByLocation(lat: any, lon:any): Observable<any> {
     return this.http.get(WEATHER_API_URL + '?lat=' + lat + '&lon=' + lon + '&lang=' + this.getBrowserLanguage() + '&units=metric&APPID=' + WEATHER_API_KEY).map((result) => {
       return result;
     });
   }
 
+  /**
+   * Retrieves city name by given latitude and longitude
+   * @param latLon
+   * @returns {Observable<any>}
+   */
   getCityName(latLon): Observable<any> {
     return this.http.get(MAPS_API_URL + '/geocode/json?latlng=' + latLon + '&sensor=false&' + MAPS_API_KEY).map((result) => {
       return result;
     });
   }
 
+  /**
+   * Retrieves the language based on browser configuration
+   * @returns {string}
+   */
   getBrowserLanguage() {
     return navigator.language.substring(0, 2);
   }
