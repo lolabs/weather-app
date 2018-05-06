@@ -1,1 +1,28 @@
 /* You can add global styles to this file, and also import other style files */
+
+/**
+ Overrides Bootstrap styles with custom styles
+ */
+body{
+  background-image: url('assets/images/blurred-background-1.jpg');
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: white;
+  opacity: 1; /* Firefox */
+}
+input{
+  background: transparent;
+  border: 2px solid white;
+}
+.form-control:focus,
+.form-control{
+  background: transparent;
+  color: white;
+}
+.btn-primary{
+  background-color: steelblue !important;
+}
+.card{
+  background-color: transparent !important;
+}

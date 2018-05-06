@@ -1,0 +1,77 @@
+.location-label{
+  margin-right: 25px;
+  color: white;
+}
+.separator-location{
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+.dashboard{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: whitesmoke;
+  opacity: 1; /* Firefox */
+}
+input{
+  background: transparent;
+  border: 2px solid white;
+}
+.search-fields {
+  &:not(.dashboard){
+    padding-top: 20px;
+    display: inline-block;
+    margin-bottom: 45px;
+    .location-form-container{
+      @media screen and (max-width: 768px){
+        float: none;
+        margin-bottom: 15px;
+        button{
+
+        }
+      }
+      float: left;
+    }
+    .separator-location{
+      display: none;
+    }
+  }
+}
+.card{
+  padding-top: 20px;
+  width: 100%;
+  border-color: white;
+
+}
+.card-img-top{
+  &.weather-card{
+    display: block;
+    margin: 0 auto;
+    width: 150px;
+    height: 150px;
+    @media screen and (max-width: 768px){
+      width: 75px;
+      height: 75px;
+    }
+  }
+}
+
+circle-progress{
+  width: 150px;
+  height: 150px;
+  display: block;
+  margin: 0 auto;
+  .humidityElement{
+    display: block;
+    margin: 0 auto;
+  }
+}
+.jumbotron{
+  background-color: transparent;
+  color: white;
+}
+
