@@ -25,13 +25,19 @@ export class WeatherComponent implements OnInit{
   ngOnInit() {
   }
 
+  /**
+   * Gets the weather conditions using ApiService
+   * with the given city name
+   * @param {string} city
+   */
   getWeatherByLocation(city: string) {
+    if (city.length === 0) {
+      alert("Field can not be empty. Please insert the name of location.");
+      this.invalidInput = true;
+      return;
+    }
     this.toggleView();
     this.spinnerService.show();
-    if (city.length === 0) {
-      alert("Please insert a city");
-      this.invalidInput = true;
-    }
     this.weatherApi.getByCityName(city).subscribe((results) => {
       this.weatherInfo = results;
       this.currentCity = " ";
@@ -40,12 +46,15 @@ export class WeatherComponent implements OnInit{
     }, (err) => {
       this.spinnerService.hide();
       //@TODO error alerts
-      console.log(err.msg);
+      alert("Please try again. Insert a valid location.");
     });
   }
 
 
-
+  /**
+   * Gets the location, based on users browser location
+   * @param location
+   */
   getCurrentLocation(location) {
     this.toggleView();
     // clear input field
@@ -58,29 +67,30 @@ export class WeatherComponent implements OnInit{
       this.weatherApi.getByLocation(this.coordinates.latitude, this.coordinates.longitude).subscribe((resp) => {
         this.weatherInfo = resp;
         this.spinnerService.hide();
-        //@TODO error alerts
-        console.log(this.weatherInfo);
       }, (err) => {
         //@TODO error alerts
-        console.log(err);
+        alert("Please try again. Insert a valid Location");
         this.spinnerService.hide();
-
       });
     });
   }
 
+  /**
+   * Sets the city name using google maps API
+   * @TODO create a new service only for google maps API
+   * @param latLon
+   */
   setCityName(latLon) {
     this.weatherApi.getCityName(latLon).subscribe((locations) => {
       if (locations.results.length > 0) {
         this.currentCity = locations.results[0].formatted_address;
       } else {
         //@TODO error alerts
-        console.log("error");
+        alert("Please try again. Insert a valid coordinates. Make sure to enable the browser location.");
       }
-
     }, (error) => {
       //@TODO error alerts
-      console.log(error.msg);
+      alert("Please try again. Insert a valid coordinates. Make sure to enable the browser location.");
     });
   }
 
@@ -94,7 +104,6 @@ export class WeatherComponent implements OnInit{
 
   onSearchChange() {
     this.toggleView();
-    console.log("hey there!");
   }
 
   clearSearch() {
