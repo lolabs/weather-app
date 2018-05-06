@@ -1,22 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import {AfterContentInit, AfterViewInit, Component, OnInit} from '@angular/core';
 import {WeatherApiService} from '../../services/weather-api.service';
 import { } from '@types/googlemaps';
 import {HttpClient} from '@angular/common/http';
 import {Ng4LoadingSpinnerService} from 'ng4-loading-spinner';
+import {AppModule} from '../../app.module';
 @Component({
   selector: 'app-weather',
   templateUrl: './weather.component.html',
-  styleUrls: ['./weather.component.css']
+  styleUrls: ['./weather.component.scss']
 })
-export class WeatherComponent implements OnInit {
+export class WeatherComponent implements OnInit{
 
-  weatherInfo: any;
-  coordinates: any;
-  currentCity: string;
-  temperature: string;
-  forecastInfo: any;
-  invalidInput: boolean;
-  showDetails: boolean;
+  public weatherInfo: any;
+  public coordinates: any;
+  public currentCity: string;
+  public temperature: string;
+  public invalidInput: boolean;
+  public showDetails: boolean;
+  public dashboard = true;
 
   constructor(public weatherApi: WeatherApiService, public http: HttpClient, public spinnerService: Ng4LoadingSpinnerService) { }
   public temp_unit = "ºC";
@@ -25,6 +26,7 @@ export class WeatherComponent implements OnInit {
   }
 
   getWeatherByLocation(city: string) {
+    this.toggleView();
     this.spinnerService.show();
     if (city.length === 0) {
       alert("Please insert a city");
@@ -45,6 +47,7 @@ export class WeatherComponent implements OnInit {
 
 
   getCurrentLocation(location) {
+    this.toggleView();
     // clear input field
     location.value = "";
     this.spinnerService.show();
@@ -83,5 +86,18 @@ export class WeatherComponent implements OnInit {
 
   toggleDetails(){
     this.showDetails = !this.showDetails;
+  }
+
+  toggleView() {
+    this.dashboard = false;
+  }
+
+  onSearchChange() {
+    this.toggleView();
+    console.log("hey there!");
+  }
+
+  clearSearch() {
+    this.spinnerService.show();
   }
 }
