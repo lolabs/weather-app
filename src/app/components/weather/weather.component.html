@@ -1,0 +1,77 @@
+<div class="container">
+  <div class="location-form-container row justify-content-md-center">
+    <div class="form-inline justify-content-center col-12">
+      <label class="location-label" for="location">Location</label>
+      <input #location type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="location" placeholder="Please enter location">
+      <button type="button" class="btn btn-primary" (click)="getWeatherByLocation(location.value)" data-toggle="popover" data-placement="left" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">Show weather</button>
+    </div>
+    <div [hidden]="!invalidInput" class="alert alert-danger" role="alert">
+      Please insert a valid city!
+    </div>
+  </div>
+  <div class="separator-location row justify-content-center">or</div>
+  <div class="btn-location-container row justify-content-center">
+    <div class="col-12">
+    <button type="button" class="btn btn-primary" (click)="getCurrentLocation(location)">Get by location</button>
+  </div>
+  </div>
+  <div class="row justify-content-center">
+    <div *ngIf="weatherInfo" class="col-12 align-content-center">
+      <h4>{{weatherInfo.name}}</h4>
+      <h4>{{currentCity}}</h4>
+      <div class="card" style="width: 18rem; margin: 0 auto; display: block;">
+        <img class="card-img-top" *ngFor="let weather of weatherInfo.weather" src="../../../assets/icons/{{weather.icon}}.png" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title" *ngFor="let weather of weatherInfo.weather">{{weather.description}}</h5>
+          <h2 class="card-title">{{weatherInfo.main.temp}} {{temp_unit}}</h2>
+          <h5 class="card-title">Max: {{weatherInfo.main.temp_max}} {{temp_unit}}</h5>
+          <h5 class="card-title">Min: {{weatherInfo.main.temp_min}} {{temp_unit}}</h5>
+
+          <img src="../../../assets/icons/windmill.gif" width="150px">
+          <h5>{{weatherInfo.wind.speed}}</h5>
+          <h5 class="card-title">Humidity: {{weatherInfo.main.humidity}}%</h5>
+          <circle-progress
+            [percent]="weatherInfo.main.humidity"
+            [radius]="100"
+            [outerStrokeWidth]="16"
+            [innerStrokeWidth]="8"
+            [outerStrokeColor]="'#4882c2'"
+            [innerStrokeColor]="'#e7e8ea'"
+            [animation]="true"
+            [animationDuration]="300"
+            [title]="weatherInfo.main.humidity"
+          ></circle-progress>
+          <p>
+            <button class="btn btn-primary" type="button" (click)="toggleDetails()">
+              <span *ngIf="!showDetails">More details</span>
+              <span *ngIf="showDetails">Less</span>
+            </button>
+          </p>
+          <div *ngIf="showDetails">
+            <div class="">
+              <h5 class="card-title">Sunrise: {{weatherInfo.sys.sunrise * 1000 | date:'shortTime'}}</h5>
+              <h5 class="card-title">Sunset: {{weatherInfo.sys.sunset * 1000| date: 'shortTime'}}</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+
+</div>
+
+
+<div *ngIf="forecastInfo">
+  <div class="card" style="width: 18rem;" *ngFor="let weather of weatherInfo">
+    <img class="card-img-top" src="../../../assets/icons/01d.png" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">{{weatherInfo.weather.description}}</h5>
+
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+
+      <a href="#" class="btn btn-primary">Go somewhere</a>
+    </div>
+  </div>
+</div>
