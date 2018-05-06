@@ -5,6 +5,20 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Examples: 
+
+![alt text](https://github.com/lolabs/weather-app/blob/master/src/screenshots/main_screen_desktop.png?raw=true "Img 1")
+
+![alt text](https://github.com/lolabs/weather-app/blob/master/src/screenshots/main_view_desktop.png?raw=true "Img 1")
+
+![alt text](https://github.com/lolabs/weather-app/blob/master/src/screenshots/search_desktop.png?raw=true "Img 1")
+
+![alt text](https://github.com/lolabs/weather-app/blob/master/src/screenshots/ipad_current_location.png?raw=true "Img 1")
+
+![alt text](https://github.com/lolabs/weather-app/blob/master/src/screenshots/mobile_screen.png?raw=true "Img 1")
+
+![alt text](https://github.com/lolabs/weather-app/blob/master/src/screenshots/mobile_scroll.png?raw=true "Img 1")
+
 
 ## Code scaffolding
 
